@@ -111,3 +111,49 @@ void integrate(std::vector<Particle>& particles)
         }
     }
 }
+
+
+// Ядро сглаживания (кубический сплайн в 3D)
+float W(float r, float h) 
+{
+    float q = r / h;
+    if (q <= 1.0f) 
+    {
+        return (1.0f / (M_PI * h * h * h)) * (1.0f - 1.5f*q*q + 0.75f*q*q*q);
+    } 
+    else if (q <= 2.0f) 
+    {
+        return (1.0f / (4.0f * M_PI * h * h * h)) * (2.0f - q)*(2.0f - q)*(2.0f - q);
+    } 
+    else 
+    {
+        return 0.0f;
+    }
+}
+
+// Градиент ядра сглаживания
+vec3 gradW(const vec3& r_vec, float h) 
+{
+    float r = r_vec.length();
+    float q = r / h;
+    
+    if (r < 1e-6f) return vec3(0, 0, 0);
+    
+    vec3 result;
+    if (q <= 1.0f) 
+    {
+        float factor = (1.0f / (M_PI * h * h * h * h)) * (-3.0f*q + 2.25f*q*q);
+        result = r_vec * (factor / r);
+    } 
+    else if (q <= 2.0f) 
+    {
+        float factor = (1.0f / (4.0f * M_PI * h * h * h * h)) * (-0.75f * (2.0f - q)*(2.0f - q));
+        result = r_vec * (factor / r);
+    } 
+    else 
+    {
+        result = vec3(0, 0, 0);
+    }
+    
+    return result;
+}

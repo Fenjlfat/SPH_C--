@@ -1,6 +1,22 @@
+//параметры частицы
 struct SPH_Particle
 {
+    //kordinate
     double X = 0.0;
+    double Y = 0.0;
+    double Z = 0.0;
+    //velocity
+    double VX = 0.0;
+    double VY = 0.0;
+    double VZ = 0.0;
+    //stress
+    double SXX = 0.0;
+    double SYY = 0.0;
+    double SZZ = 0.0;
+    double SXY = 0.0;
+    double SXZ = 0.0;
+    double SYZ = 0.0;
+
     
     /* data */
 };
