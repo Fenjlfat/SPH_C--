@@ -33,11 +33,7 @@ std::vector<Particle> initParticles()
         {
             for (float z = DEPTH/2 - 1.0f; z < DEPTH/2 + 1.0f && i < NUM_PARTICLES; z += 0.15f) 
             {
-                particles[i].position = vec3(
-                    x + dis(gen)*0.02f,
-                    y + dis(gen)*0.02f,
-                    z + dis(gen)*0.02f
-                );
+                particles[i].position = vec3(x + dis(gen)*0.02f, y + dis(gen)*0.02f, z + dis(gen)*0.02f);
                 particles[i].velocity = vec3(0, 0, 0);
                 particles[i].force = vec3(0, 0, 0);
                 particles[i].density = 0.0f;
@@ -79,4 +75,3 @@ std::vector<Particle> initParticles()
     
     return particles;
 }
-

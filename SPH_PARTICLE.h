@@ -1,5 +1,5 @@
 //параметры частицы
-struct SPH_Particle
+struct SPH_particle
 {
     //kordinate
     double X = 0.0;
@@ -9,6 +9,14 @@ struct SPH_Particle
     double VX = 0.0;
     double VY = 0.0;
     double VZ = 0.0;
+    //mass
+    double mass = 0.0;
+    //density
+    double dens = 0.0;
+    //internal energy
+    double U = 0.0;
+    //pressure
+    double press = 0.0;
     //stress
     double SXX = 0.0;
     double SYY = 0.0;
